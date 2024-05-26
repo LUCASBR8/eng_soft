@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Consulta</title>
+</head>
+<body>
+    <h1>Agendar Consulta</h1>
+    <form action="/agendar_consulta" method="post">
+        <label for="pet_id">Selecione o pet:</label>
+        <select name="pet_id" id="pet_id">
+            <option value="1">Rex (Golden Retriever)</option>
+            <option value="2">Luna (Siamese)</option>
+        </select>
+        <br>
+        <label for="veterinario_id">Escolha o veterinário:</label>
+        <select name="veterinario_id" id="veterinario_id">
+            <option value="1">Dr. João (Clínica Geral)</option>
+            <option value="2">Dra. Maria (Dermatologia)</option>
+        </select>
+        <br>
+        <input type="submit" value="Agendar">
+    </form>
+</body>
+</html>
