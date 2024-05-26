@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas Agendadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Consultas Agendadas</h1>
+    <table>
+        <tr>
+            <th>Nome do Pet</th>
+            <th>Nome do Dono</th>
+            <th>Veterinário</th>
+            <th>Data e Hora</th>
+            <th>Consulta em Domicílio</th>
+            <th>Endereço</th>
+            <th>Número de Telefone</th>
+        </tr>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.pet_name }}</td>
+                <td>{{ appointment.owner_name }}</td>
+                <td>{{ appointment.vet_name }}</td>
+                <td>{{ appointment.date_time }}</td>
+                <td>{{ 'Sim' if appointment.home_visit else 'Não' }}</td>
+                <td>{{ appointment.address }}</td>
+                <td>{{ appointment.phone_number }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a class="button" href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>

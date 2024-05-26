@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Consulta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Agendar uma Consulta</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('schedule') }}" method="post">
+        <label for="pet_name">Nome do Pet:</label>
+        <input type="text" id="pet_name" name="pet_name" required>
+
+        <label for="owner_name">Nome do Dono:</label>
+        <input type="text" id="owner_name" name="owner_name" required>
+
+        <label for="vet_name">Veterinário:</label>
+        <select id="vet_name" name="vet_name" required>
+            {% for vet in veterinarians %}
+                <option value="{{ vet }}">{{ vet }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="home_visit">Atendimento a Domicílio:</label>
+        <input type="checkbox" id="home_visit" name="home_visit" onchange="toggleAddressFields()">
+
+        <div id="address_fields" style="display:none;">
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address">
+
+            <label for="phone_number">Número de Telefone:</label>
+            <input type="text" id="phone_number" name="phone_number">
+        </div>
+
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Horário:</label>
+        <select id="time" name="time" required>
+            {% for time in available_times %}
+                <option value="{{ time }}">{{ time }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Agendar</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="button">Voltar</a>
+    <a href="{{ url_for('view_appointments') }}" class="button">Ver Consultas Agendadas</a>
+    <script>
+        function toggleAddressFields() {
+            var homeVisitCheckbox = document.getElementById('home_visit');
+            var addressFields = document.getElementById('address_fields');
+            if (homeVisitCheckbox.checked) {
+                addressFields.style.display = 'block';
+            } else {
+                addressFields.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
